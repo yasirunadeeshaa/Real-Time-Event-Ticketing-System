@@ -24,10 +24,14 @@ public class TicketService {
         List<Ticket> ticketList = ticketRepository.findAll();
         return modelMapper.map(ticketList, new TypeToken<List<TicketDTO>>(){}.getType());
     }
-    public TicketDTO getTicketByTicketId(Long ticketId) {
-        Ticket ticket = ticketRepository.getTicketBy_TicketId(ticketId);
-        if (ticket == null) {throw new RuntimeException("Product not found with ID: " + ticketId);}
-        else {return modelMapper.map(ticket, TicketDTO.class);}
+    public TicketDTO getTicketByTicketId(Long ticketID) {
+
+        //ticketRepository.deleteById(ticketID);
+        //return modelMapper.map(ticketRepository.findById(ticketID).get(), TicketDTO.class);
+        Ticket ticket = ticketRepository.getTicketBy_TicketId(ticketID);
+        return modelMapper.map(ticket, TicketDTO.class);
+//        if (ticket == null) {throw new RuntimeException("Product not found with ID: " + ticketId);}
+//        else {return modelMapper.map(ticket, TicketDTO.class);}
     }
     public TicketDTO saveTicket(TicketDTO ticketDTO) {
         ticketRepository.save(modelMapper.map(ticketDTO, Ticket.class));
@@ -36,9 +40,10 @@ public class TicketService {
     public TicketDTO updateTicket(TicketDTO ticketDTO) {
         ticketRepository.save(modelMapper.map(ticketDTO, Ticket.class));
         return ticketDTO;
+
     }
-    public String deleteTicket(Long ticketId) {
-        ticketRepository.deleteById(ticketId);
+    public String deleteTicket(Long ticketID) {
+        ticketRepository.deleteById(ticketID);
         return "Ticket deleted";
     }
 
