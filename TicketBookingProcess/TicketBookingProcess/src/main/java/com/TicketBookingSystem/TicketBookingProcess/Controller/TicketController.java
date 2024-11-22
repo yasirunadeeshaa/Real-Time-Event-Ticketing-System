@@ -19,11 +19,11 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
-    @GetMapping("v1/gettickets")
+    @GetMapping("gettickets")
     public List<TicketDTO> getAllTickets() {
         return ticketService.getAllTickets();
     }
-    @GetMapping("v1/getticket/{ticketId}")
+    @GetMapping("getticket/{ticketId}")
     public TicketDTO getTicketBy_TicketId(@PathVariable Long ticketId) {
        return ticketService.getTicketByTicketId(ticketId);
     }
@@ -37,7 +37,6 @@ public class TicketController {
     }
     @DeleteMapping("deleteticket/{ticketId}")
     public String deleteTicket(@PathVariable Long ticketId) {
-        ticketService.deleteTicket(ticketId);
-        return "ticket deleted";
+        return ticketService.deleteTicket(ticketId);
     }
 }

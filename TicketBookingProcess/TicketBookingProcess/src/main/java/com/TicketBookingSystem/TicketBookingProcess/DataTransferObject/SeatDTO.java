@@ -1,17 +1,13 @@
-package com.TicketBookingSystem.TicketBookingProcess.Model;
+package com.TicketBookingSystem.TicketBookingProcess.DataTransferObject;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Seat {
-    @Id
+public class SeatDTO {
     private Long seatID;
     private int seatNumber;
     private String seatType;

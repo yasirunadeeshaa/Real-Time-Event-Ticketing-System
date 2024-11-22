@@ -20,12 +20,12 @@ public class EventService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public List<Event> getAllEvents() {
+    public List<EventDTO> getAllEvents() {
         List<Event> events = eventRepository.findAll();
         return modelMapper.map(events, new TypeToken<List<Event>>() {}.getType());
     }
-    public EventDTO getEventByEventId(Long id) {
-        Event event = eventRepository.getEventBy_EventId(id);
+    public EventDTO getEventByEventId(Long eventId) {
+        Event event = eventRepository.getEventBy_EventId(eventId);
         return modelMapper.map(event, EventDTO.class);
     }
     public EventDTO addEvent(EventDTO eventDTO) {
