@@ -1,8 +1,11 @@
 package com.TicketBookingSystem.TicketBookingProcess.DataTransferObject;
 
+import com.TicketBookingSystem.TicketBookingProcess.Model.Venue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,4 +16,6 @@ public class EventDTO {
     private String eventName;
     private String eventDescription;
     private String eventTimeDuration;
+
+    private List<Venue> venues;
 }

@@ -1,12 +1,12 @@
 package com.TicketBookingSystem.TicketBookingProcess.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -14,11 +14,20 @@ import java.util.List;
 public class Event {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eventID;
+
     private String eventType;
     private String eventName;
     private String eventDescription;
     private String eventTimeDuration;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "event_venue",
+            joinColumns = @JoinColumn(name = "eventid"),
+            inverseJoinColumns = @JoinColumn(name="venueid")
+    )
 
+    private Set<Venue> venues;// = new HashSet<>();
 }

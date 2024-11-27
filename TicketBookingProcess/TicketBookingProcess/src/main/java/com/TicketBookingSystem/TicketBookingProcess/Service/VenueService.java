@@ -28,9 +28,12 @@ public class VenueService {
         Venue venue = venueRepository.getVenue_VenueID(id);
         return modelMapper.map(venue,VenueDTO.class);
     }
-    public VenueDTO addVenue(VenueDTO venueDTO) {
-        venueRepository.save(modelMapper.map(venueDTO,Venue.class));
-        return venueDTO;
+//    public VenueDTO addVenue(VenueDTO venueDTO) {
+//        venueRepository.save(modelMapper.map(venueDTO,Venue.class));
+//        return venueDTO;
+//    }
+    public Venue addVenue(Venue venue) {
+        return venueRepository.save(venue);
     }
     public VenueDTO updateVenue(VenueDTO venueDTO) {
         venueRepository.save(modelMapper.map(venueDTO,Venue.class));

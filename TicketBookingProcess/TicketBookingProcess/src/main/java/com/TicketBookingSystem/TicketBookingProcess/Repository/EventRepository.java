@@ -1,12 +1,18 @@
 package com.TicketBookingSystem.TicketBookingProcess.Repository;
 
 import com.TicketBookingSystem.TicketBookingProcess.Model.Event;
-import com.TicketBookingSystem.TicketBookingProcess.Model.Ticket;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.Optional;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
+    Event findEventByEventName(String eventName);
+    Event findEventByEventID(Long eventID);
+    Event findEventByEventType(String eventType);
 
-    @Query(value = "SELECT * FROM event WHERE eventid = ?1", nativeQuery = true)
-    Event getEventBy_EventId(Long eventID);
+    @Query("SELECT e FROM Event e JOIN FETCH e.venues WHERE e.eventID = :eventID")
+    Optional<Event> findEventByIdWithVenues(@Param("eventID") Long eventID);
+
 }
